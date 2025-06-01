@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор Паролів</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="logo-container">
+    <img src="https://i.ibb.co/nsXTwydw/logo.png" alt="Логотип">
+</div>
+
+<div id="app">
+    <div id="masterKeyScreen">
+        <h2>Введіть Майстер-Ключ</h2>
+        <input type="password" id="masterKeyInput" placeholder="Майстер-ключ">
+        <button id="unlockButton">Розблокувати / Створити сховище</button>
+        <p id="masterKeyMessage" class="message"></p>
+    </div>
+
+    <div id="mainMenuScreen" style="display:none;">
+        <h2>Головне Меню</h2>
+        <button id="viewPasswordsButton">Переглянути паролі</button>
+        <button id="managePasswordsButton">Додати/видалити пароль</button>
+        <button id="lockButton">Заблокувати сховище (Вихід)</button>
+    </div>
+
+    <div id="passwordListScreen" style="display:none;">
+        <h2>Список Паролів</h2>
+        <div id="passwordsContainer"></div>
+        <button id="backToMainFromList">Назад до Головного Меню</button>
+    </div>
+
+    <div id="passwordEditScreen" style="display:none;">
+        <h2>Редагування Паролів</h2>
+        <button id="showAddPasswordFormButton">Додати пароль</button>
+        <button id="showRemovePasswordFormButton">Видалити пароль</button>
+        <button id="backToMainFromEdit">Повернутися до Головного Меню</button>
+    </div>
+
+    <div id="addPasswordFormScreen" style="display:none;">
+        <h3>Додати Пароль</h3>
+        <button id="addOwnPasswordButton">Ввести свій пароль</button>
+        <button id="generatePasswordButton">Згенерувати пароль</button>
+        <div id="manualAddPasswordFields" style="display:none;">
+            <label for="newLoginInput">Логін/Ресурс:</label>
+            <input type="text" id="newLoginInput">
+            <label for="newPasswordInput">Пароль:</label>
+            <input type="text" id="newPasswordInput">
+            <button id="saveManualPasswordButton">Зберегти</button>
+        </div>
+        <div id="generatePasswordFields" style="display:none;">
+            <h4>Параметри генерації:</h4>
+            <label for="genPassLen">Довжина (1-128):</label>
+            <input type="number" id="genPassLen" value="12" min="1" max="128"><br>
+            <label for="genLatin">К-ть латиниці:</label>
+            <input type="number" id="genLatin" value="4" min="0"><br>
+            <label for="genCyrillic">К-ть кирилиці:</label>
+            <input type="number" id="genCyrillic" value="4" min="0"><br>
+            <label for="genSpecCharNum">К-ть спецсимволів:</label>
+            <input type="number" id="genSpecCharNum" value="2" min="0"><br>
+            <label for="genSpecChars">Дозволені спецсимволи (разом):</label>
+            <input type="text" id="genSpecChars" value="!@#$%^&*"><br>
+            <button id="executeGenerateButton">Згенерувати</button>
+            <p>Згенерований пароль: <strong id="generatedPasswordOutput"></strong></p>
+            <div id="saveGeneratedPasswordFields" style="display:none;">
+                <label for="genLoginInput">Логін/Ресурс для згенерованого пароля:</label>
+                <input type="text" id="genLoginInput">
+                <button id="saveGeneratedPasswordButton">Зберегти згенерований пароль</button>
+            </div>
+        </div>
+        <button id="backToEditFromAdd">Назад до Редагування</button>
+        <p id="addPasswordMessage" class="message"></p>
+    </div>
+
+    <div id="removePasswordFormScreen" style="display:none;">
+        <h3>Видалити Пароль</h3>
+        <label for="loginToDeleteInput">Логін/Ресурс для видалення:</label>
+        <input type="text" id="loginToDeleteInput">
+        <button id="executeDeleteButton">Видалити</button>
+        <button id="backToEditFromRemove">Назад до Редагування</button>
+        <p id="removePasswordMessage" class="message"></p>
+    </div>
+    <p id="globalMessage" class="message error"></p>
+
+</div>
+
+<script src="cryptoService.js"></script>
+<script src="dbService.js"></script>
+<script src="passwordService.js"></script>
+<script src="uiManager.js"></script>
+<script src="appController.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
